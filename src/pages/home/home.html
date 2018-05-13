@@ -11,8 +11,23 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let item of items" (click)="viewItem(item)">
-      {{item.title}}
-    </ion-item>
+    <ion-item-sliding *ngFor="let item of items">
+      <ion-item>
+      <ion-label>{{item.title}}</ion-label>
+        <ion-select [(ngModel)]="item.status">
+          <ion-option value="p">Pending</ion-option>
+          <ion-option value="c">Complete</ion-option>
+          <ion-option value="o">Overdue</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item-options side="right">
+
+        <button ion-button color="danger" (click)="trashItem(item)"><ion-icon name="trash"></ion-icon></button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
+  <ion-buttons>
+    <button ion-button (click)="itemstatus()">log todos</button>
+    <button id="clearButt" ion-button (click)="killEmAll()" color="danger">DEV CLEAR!</button>
+  </ion-buttons>
 </ion-content>

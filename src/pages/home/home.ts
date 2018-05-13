@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
 import { AddItemPage } from '../add-item/add-item'
-import { ItemDetailPage } from '../item-detail/item-detail';
 import { Data } from '../../providers/data/data';
 
 @Component({
@@ -49,10 +48,18 @@ export class HomePage {
     this.dataService.save(this.items);
   }
 
-  viewItem(item){
-    this.navCtrl.push(ItemDetailPage, {
-      item: item
-    });
+  killEmAll(){
+    this.dataService.killswitch();
+    this.navCtrl.push(HomePage);
   }
 
+  trashItem(selected){
+    this.items.splice(this.items.indexOf(selected), 1);
+    this.dataService.save(this.items);
+    this.navCtrl.push(HomePage);
+  }
+
+  itemstatus(){
+    console.log(this.items);
+  }
 }

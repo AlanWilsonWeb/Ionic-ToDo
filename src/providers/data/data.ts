@@ -17,4 +17,11 @@ export class Data {
     this.storage.set('todos', data);
   }
 
+  killswitch(){
+    this.storage.clear();
+  }
+
+  itemDel(selected){
+    this.storage.remove(selected);
+  }
 }
